@@ -1,0 +1,35 @@
+recursive:
+  attribute: value
+  recordAttribute:
+    nestedAttribute: value2
+    nestedRecursiveAttribute:
+      nestedAttribute: value3
+      nestedRecursiveAttribute:
+        nestedAttribute: value4
+        nestedRecursiveAttribute:
+
+
+named:
+  annotatedConstructor:
+    name: "invalid"
+    annotatedName: "valid"
+  singleConstructor:
+    singleConstructorName: "valid"
+    name: "invalid"
+  box:
+    singleConstructor:
+        singleConstructorName: "invalid"
+        name: "invalid"
+    boxed:
+      name: "invalid"
+      singleConstructorName: "valid"
+
+bean-method:
+  javabean:
+    value: "config value"
+    subClassAttributeName:
+      subValue: 5
+
+  javabean-constructor:
+    nonFinalAttribute: "config value"
+#    finalAttribute: "config value"

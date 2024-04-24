@@ -1,0 +1,16 @@
+#debug: true
+
+record-tests:
+  simple-record-attribute-name:
+    component1: 1value1
+    component2: 1value2
+
+  attribute-with-record-default-overwrite:
+    component1: 2value1
+    component2: 2value2
+
+  attribute-with-record-default-partial-overwrite:
+    component2: 3value2
+
+  configured-record-with-one-default-component:
+    component1: 4value1

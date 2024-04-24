@@ -1,0 +1,23 @@
+package cz.lukaskabc.cvut.processor.configuration.examples;
+
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+class ConfigurationPropertiesConfigTest {
+    @Autowired
+    ConfigurationPropertiesConfig config;
+
+    @Test
+    void valuesFromApplicationYaml() {
+        Assertions.assertEquals("attribute", config.getValue());
+        Assertions.assertEquals(10, config.getSubClass().getSubValue());
+    }
+}

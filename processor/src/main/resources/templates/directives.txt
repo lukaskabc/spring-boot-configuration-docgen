@@ -1,0 +1,45 @@
+[#assign areThereRequired = false]
+[#macro asterisk option][#compress]
+[#-- check if the option is required --]
+
+    [#if option.required]
+        [#assign areThereRequired = true]
+
+[#-- adjust the output format and use #t to strip new lines and spaces --]
+
+        [#if format == "MD"]
+            **\***
+        [#else]
+            <b>&#42;</b>
+        [/#if]
+
+    [/#if]
+[/#compress][/#macro]
+
+[#assign areThereDeprecated = false]
+[#macro deprecated option][#compress]
+[#-- check if the option is deprecated --]
+
+    [#if option.deprecated]
+        [#assign areThereDeprecated = true]
+
+[#-- adjust the output format and use #t to strip new lines and spaces --]
+
+        [#if format == "MD"]
+            *Deprecated *
+        [#else]
+            <i>Deprecated </i>
+        [/#if]
+
+    [/#if]
+[/#compress][/#macro]
+
+[#macro legend]
+    [#if areThereRequired]
+        [#if format == "MD"]
+            **\* Required**[#lt]
+        [#else]
+            <b>&#42; Required</b>[#lt]
+        [/#if]
+    [/#if]
+[/#macro]

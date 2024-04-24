@@ -1,0 +1,77 @@
+
+configuration-properties:
+  cpTopLevelValue: "topLevelValue"
+  cpPrivateValueNoAccessors: "noAccessors"
+  cpPrivateValue: "privateValue"
+  CPSubClass:
+    cpSubClassValue: "subClassValue"
+
+top-level-value: "topLevelValue"
+sub-class-value: "subClassValue"
+sub-sub-class-value: "subSubClassValue"
+
+
+
+value-attribute: "attribute"
+value-method: 10
+value-parameter: 3.6
+value-constructor: "constructor"
+
+number-value: 5
+
+
+prefix.value: "attribute"
+prefix.sub-class.sub-value: 10
+
+testsValue-constructor: "value"
+tests_value_attribute: "attribute"
+tests-value-method: 10
+tests_value_method_parameter: 3
+tests_value_method_combination: 10
+
+differentComments: "differentComments"
+sameComments: "sameComments"
+
+value:
+  value_annotation: "value_annotation"
+  value-in-properties: "value-in-properties"
+
+termit:
+  repository:
+    url: "repo url"
+
+repository:
+  url: "direct repo url"
+
+termit-record:
+  workspace:
+    all-vocabularies-editable: true
+
+external:
+  attributeName:
+    value: "external attribute value"
+
+foo: "1"
+bar: "0"
+
+#public-attr: "public-attr"
+#no-accessor: "no-accessor"
+plain-accessor: "plain-accessor"
+plain-setter-only: "plainSetterOnly"
+
+#lombok-getter-only: "lombok-getter-only"
+lombok-setter-only: "lombok-setter-only"
+
+lombok-static-accessor: "lombok-static-accessor"
+#lombok-final-accessor: "lombok-final-accessor"
+lombok-accessor: "lombok-accessor"
+
+collection: "some, string, values"
+map:
+  key1: "value1"
+  key2: "value2"
+  key3: "value3"
+
+nonAttributeParameter: "param attr"
+attribute: 53
+nonConstructorAttribute: "some value"

@@ -1,0 +1,25 @@
+<table>
+    <tr>
+        <th>Variable</th>
+        <th>Description</th>
+    </tr>
+[#list options as option]
+    <tr>
+        <td>[@deprecated option /]<code>${option.name}</code>[@asterisk option /]</td>
+        <td>
+            [#if option.description?trim?length > 0]
+                ${option.description}[#t]
+
+            [/#if]
+            [#if option.restrictions?trim?length > 0]
+                [#if option.description?trim?length > 0]
+                    <br>[#lt]
+                [/#if]
+                ${option.restrictions}[#lt]
+            [/#if]
+        </td>
+    </tr>
+[/#list]
+</table>
+
+[@legend /]

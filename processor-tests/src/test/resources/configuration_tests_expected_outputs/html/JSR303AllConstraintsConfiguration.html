@@ -1,0 +1,319 @@
+<table>
+    <tr>
+        <th>Variable</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><code>DECIMALMAX</code></td>
+        <td>
+value <= <code>5.3</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>DECIMALMIN</code></td>
+        <td>
+value >= <code>0.5</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>DIGITS</code></td>
+        <td>
+maximum of <code>3</code> digits before the decimal point and <code>2</code> digits after it
+        </td>
+    </tr>
+    <tr>
+        <td><code>EMAIL</code></td>
+        <td>
+valid email
+        </td>
+    </tr>
+    <tr>
+        <td><code>FUTURE</code></td>
+        <td>
+time in future
+        </td>
+    </tr>
+    <tr>
+        <td><code>FUTUREORPRESENT</code></td>
+        <td>
+time in the present or in the future
+        </td>
+    </tr>
+    <tr>
+        <td><code>MAX</code></td>
+        <td>
+value <= <code>5</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>MIN</code></td>
+        <td>
+value >= <code>5</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLEDECIMALMAX</code></td>
+        <td>
+When multiple MAX are present, the smallest one should be used
+<br>
+value <= <code>5</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLEDECIMALMIN</code></td>
+        <td>
+When multiple MIN are present, the biggest one should be used
+<br>
+value >= <code>2</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLEDIGITS</code></td>
+        <td>
+When multiple digits are present, the strictest one should be used
+<br>
+maximum of <code>1</code> digits before the decimal point and <code>1</code> digits after it
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLEEMAILS</code></td>
+        <td>
+Multiple emails should have no additional effect
+<br>
+valid email
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLEFUTURE</code></td>
+        <td>
+Multiple future should have no additional effect
+<br>
+time in future
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLEFUTUREORPRESENT</code></td>
+        <td>
+Multiple futureOrPresent should have no additional effect
+<br>
+time in the present or in the future
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLEMAX</code></td>
+        <td>
+When multiple MAX are present, the smallest one should be used
+<br>
+value <= <code>1</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLEMIN</code></td>
+        <td>
+When multiple MIN are present, the biggest one should be used
+<br>
+value >= <code>10</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLENEGATIVE</code></td>
+        <td>
+Multiple negative should have no additional effect
+<br>
+value < 0
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLENEGATIVEORZERO</code></td>
+        <td>
+Multiple negativeOrZero should have no additional effect
+<br>
+value <= 0
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLENOTBLANK</code><b>&#42;</b></td>
+        <td>
+Multiple notBlank should have no additional effect
+<br>
+value must be present and contain at least one non-whitespace character
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLENOTEMPTY</code><b>&#42;</b></td>
+        <td>
+Multiple notEmpty should have no additional effect
+<br>
+value must be present and not empty
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLENOTNULL</code><b>&#42;</b></td>
+        <td>
+Multiple notNull should have no additional effect
+<br>
+value must be present
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLENULLOBJECT</code></td>
+        <td>
+Multiple nullObject should have no additional effect
+<br>
+no value accepted, leave blank
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLEPAST</code></td>
+        <td>
+Multiple past should have no additional effect
+<br>
+time in the past
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLEPASTORPRESENT</code></td>
+        <td>
+Multiple pastOrPresent should have no additional effect
+<br>
+time in the past or present
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLEPATTERN</code></td>
+        <td>
+When multiple patterns are present, all should be used
+<br>
+value must match regular expressions:<br>
+<code>^[a-z]+$</code><br>
+<code>^[a-z_]+$</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLEPOSITIVE</code></td>
+        <td>
+Multiple positive should have no additional effect
+<br>
+0 < value
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLEPOSITIVEORZERO</code></td>
+        <td>
+Multiple positiveOrZero should have no additional effect
+<br>
+0 <= value
+        </td>
+    </tr>
+    <tr>
+        <td><code>MULTIPLESIZE</code></td>
+        <td>
+When multiple sizes are present,
+the highest the minimum and the lowest maximum should be used (even from different annotations)
+<br>
+<code>5</code> <= value length/size <= <code>5</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>MUSTBEFALSE</code></td>
+        <td>
+has to be<code>false</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>MUSTBEREALLYFALSE</code></td>
+        <td>
+Multiple assert false should have no additional effect
+<br>
+has to be<code>false</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>MUSTBEREALLYTRUE</code></td>
+        <td>
+Multiple assert true should have no additional effect
+<br>
+has to be <code>true</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>MUSTBETRUE</code></td>
+        <td>
+has to be <code>true</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>NEGATIVE</code></td>
+        <td>
+value < 0
+        </td>
+    </tr>
+    <tr>
+        <td><code>NEGATIVEORZERO</code></td>
+        <td>
+value <= 0
+        </td>
+    </tr>
+    <tr>
+        <td><code>NOTBLANK</code><b>&#42;</b></td>
+        <td>
+value must be present and contain at least one non-whitespace character
+        </td>
+    </tr>
+    <tr>
+        <td><code>NOTEMPTY</code><b>&#42;</b></td>
+        <td>
+value must be present and not empty
+        </td>
+    </tr>
+    <tr>
+        <td><code>NOTNULL</code><b>&#42;</b></td>
+        <td>
+value must be present
+        </td>
+    </tr>
+    <tr>
+        <td><code>NULLOBJECT</code></td>
+        <td>
+no value accepted, leave blank
+        </td>
+    </tr>
+    <tr>
+        <td><code>PAST</code></td>
+        <td>
+time in the past
+        </td>
+    </tr>
+    <tr>
+        <td><code>PASTORPRESENT</code></td>
+        <td>
+time in the past or present
+        </td>
+    </tr>
+    <tr>
+        <td><code>PATTERN</code></td>
+        <td>
+value must match regular expression <code>^[a-z]+$</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>POSITIVE</code></td>
+        <td>
+0 < value
+        </td>
+    </tr>
+    <tr>
+        <td><code>POSITIVEORZERO</code></td>
+        <td>
+0 <= value
+        </td>
+    </tr>
+    <tr>
+        <td><code>SIZE</code></td>
+        <td>
+<code>5</code> <= value length/size <= <code>10</code>
+        </td>
+    </tr>
+</table>
+
+<b>&#42; Required</b>
