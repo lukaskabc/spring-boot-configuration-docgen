@@ -154,7 +154,7 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/lukaskabc/spring-boot-configuration-docgen.git</connection>
+        <connection>scm:git:ssh://git@github.com/lukaskabc/spring-boot-configuration-docgen.git</connection>
         <url>https://github.com/lukaskabc/spring-boot-configuration-docgen</url>
     </scm>
 
