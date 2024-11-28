@@ -291,6 +291,15 @@ public class ProcessorConfiguration {
         }
 
         var file = new File(outputFile);
+        var outputDirectory = file.getAbsoluteFile().getParentFile();
+        // create parent directories if not exist
+        if (outputDirectory != null && !outputDirectory.exists()) {
+            if (file.getParentFile().mkdirs()) {
+                Log.instance().info("Created output directory: " + file.getParentFile().getAbsolutePath());
+            } else {
+                throw new IllegalArgumentException("Cannot create output directory for the output file: " + file.getParentFile().getAbsolutePath());
+            }
+        }
         if (file.exists()) {
             if (!file.isFile()) {
                 throw new IllegalArgumentException("Specified output file is not a file: " + file.getAbsolutePath());

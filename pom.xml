@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cz.lukaskabc.cvut.processor</groupId>
     <artifactId>spring-boot-configuration-docgen-all</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <description>Parent project for spring-boot-configuration-docgen-processor</description>
