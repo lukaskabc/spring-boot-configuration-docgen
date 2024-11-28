@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cz.lukaskabc.cvut.processor</groupId>
     <artifactId>spring-boot-configuration-docgen-all</artifactId>
-    <version>1.1</version>
+    <version>1.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <description>Parent project for spring-boot-configuration-docgen-processor</description>
@@ -184,7 +184,7 @@
     <scm>
         <connection>scm:git:ssh://git@github.com/lukaskabc/spring-boot-configuration-docgen.git</connection>
         <url>https://github.com/lukaskabc/spring-boot-configuration-docgen</url>
-      <tag>1.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
 </project>
