@@ -109,7 +109,7 @@ For further reference, please use [FreeMarker documentation](https://freemarker.
 ## Bachelor thesis
 
 This project initially started as a bachelor's thesis at [Czech Technical University in Prague, Faculty of Electrical Engineering](https://fel.cvut.cz/en).  
-<!-- TODO: The Thesis is available in Czech on [DSpace](#). -->  
+The Thesis is available in Czech on [DSpace](https://dspace.cvut.cz/bitstreams/8ac33d4d-8ace-41a3-b3ac-83c240f947cf/download).  
 The goal was to create a tool that could be easily integrated into existing Java projects,
 and will generate documentation from Spring Boot configuration classes ([ConfigurationProperties](https://docs.spring.io/spring-boot/docs/3.2.1/reference/html/features.html#features.external-config.typesafe-configuration-properties.java-bean-binding)) using Javadoc comments.
 Configuration is in form of environmental variables.
