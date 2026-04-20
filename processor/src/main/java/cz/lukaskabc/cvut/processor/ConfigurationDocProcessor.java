@@ -204,7 +204,12 @@ public class ConfigurationDocProcessor extends AbstractProcessor {
      */
     private void processConfigurationPropertiesAnnotation(Set<Element> elements) {
 
-        var propertyClassScanner = new PropertiesClassScanner(envUtils, REQUIRE_GETTER_FOR_PROPERTIES, processorConfiguration.getEnvPrefix());
+        var propertyClassScanner = new PropertiesClassScanner(
+                envUtils,
+                REQUIRE_GETTER_FOR_PROPERTIES,
+                processorConfiguration.getEnvPrefix(),
+                processorConfiguration.getSplitOptionsOnCapital()
+        );
 
         for (var element : elements) {
             var annotation = element.getAnnotation(ConfigurationProperties.class);
