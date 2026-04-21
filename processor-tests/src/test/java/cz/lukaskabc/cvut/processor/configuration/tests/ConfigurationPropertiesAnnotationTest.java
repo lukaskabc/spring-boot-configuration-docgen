@@ -76,5 +76,18 @@ class ConfigurationPropertiesAnnotationTest extends AbstractProcessorTest {
         testFile(JavadocTagsConfiguration.class.getSimpleName(), "html", 2);
     }
 
+    @Test
+    void Class_with_one_inner_class__with_capital_split() {
+        documentFile(InnerClassConfiguration.class.getSimpleName(), "html", 2, "split_options_on_capital");
+        validateFiles(InnerClassConfiguration.class.getSimpleName()+"_capital_splitting", "html");
+    }
+
+    @Test
+    void Constructor_binding_with_name_annotation_with_capital_split() {
+        documentFile(ConstructorBindingWithNameAnnotation.class.getSimpleName(), "md", 3, "split_options_on_capital");
+        validateFiles(ConstructorBindingWithNameAnnotation.class.getSimpleName()+"_capital_splitting", "md");
+    }
+
+
 
 }

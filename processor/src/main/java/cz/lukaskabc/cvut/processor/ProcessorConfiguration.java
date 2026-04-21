@@ -102,6 +102,11 @@ public class ProcessorConfiguration {
      */
     private String envPrefix = "";
 
+    /**
+     * Whether configuration options from properties files should be separated with underscore
+     * on capital letters. {@code multiWord1Option} will become {@code MULTI_WORD1_OPTION}
+     */
+    private boolean splitOptionsOnCapital = false;
 
     /**
      * Options supported by this annotation processor, processed in defined order
@@ -209,6 +214,12 @@ public class ProcessorConfiguration {
                     Log.instance().info("Using environment variable prefix: " + param);
 
                     envPrefix = param;
+                    return true;
+                }
+            }, new AbstractProcessorOption("split_options_on_capital", "Whether configuration options should be separated with underscore on capital letters.", null) {
+                @Override
+                protected boolean processImpl(String parameterValue) {
+                    splitOptionsOnCapital = true;
                     return true;
                 }
             });
@@ -355,6 +366,10 @@ public class ProcessorConfiguration {
 
     public boolean getNoHtmlInMarkdown() {
         return noHtmlInMarkdown;
+    }
+
+    public boolean getSplitOptionsOnCapital() {
+        return splitOptionsOnCapital;
     }
 
     public String getConfigurationPackage() {

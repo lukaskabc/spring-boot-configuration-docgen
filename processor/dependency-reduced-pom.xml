@@ -3,7 +3,7 @@
   <parent>
     <artifactId>spring-boot-configuration-docgen-all</artifactId>
     <groupId>cz.lukaskabc.cvut.processor</groupId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.2-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>spring-boot-configuration-docgen-processor</artifactId>

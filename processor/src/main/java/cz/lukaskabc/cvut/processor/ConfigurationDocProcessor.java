@@ -17,7 +17,9 @@ import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static cz.lukaskabc.cvut.processor.ProcessorConfiguration.*;
 
@@ -26,7 +28,6 @@ import static cz.lukaskabc.cvut.processor.ProcessorConfiguration.*;
  * {@link org.springframework.boot.context.properties.ConfigurationProperties @ConfigurationProperties}
  * and {@link org.springframework.beans.factory.annotation.Value @Value} annotations.
  */
-@SupportedSourceVersion(SourceVersion.RELEASE_17)
 @SupportedAnnotationTypes({CONFIGURATION_PROPERTIES_ANNOTATION,
         VALUE_ANNOTATION})
 @SupportedOptions({ProcessorConfiguration.PROCESSOR_CONFIGURATION_PREFIX + "configuration_package",
@@ -204,7 +205,12 @@ public class ConfigurationDocProcessor extends AbstractProcessor {
      */
     private void processConfigurationPropertiesAnnotation(Set<Element> elements) {
 
-        var propertyClassScanner = new PropertiesClassScanner(envUtils, REQUIRE_GETTER_FOR_PROPERTIES, processorConfiguration.getEnvPrefix());
+        var propertyClassScanner = new PropertiesClassScanner(
+                envUtils,
+                REQUIRE_GETTER_FOR_PROPERTIES,
+                processorConfiguration.getEnvPrefix(),
+                processorConfiguration.getSplitOptionsOnCapital()
+        );
 
         for (var element : elements) {
             var annotation = element.getAnnotation(ConfigurationProperties.class);
@@ -411,4 +417,18 @@ public class ConfigurationDocProcessor extends AbstractProcessor {
         return decorators;
     }
 
+    @Override
+    public SourceVersion getSupportedSourceVersion() {
+        return Stream.of(25, 21)
+                .map(release -> {
+                    try {
+                        return SourceVersion.valueOf("RELEASE_" + release);
+                    } catch (IllegalArgumentException e) {
+                        return SourceVersion.RELEASE_0;
+                    }
+                })
+                .filter(Predicate.not(SourceVersion.RELEASE_0::equals))
+                .findFirst()
+                .orElse(SourceVersion.RELEASE_17);
+    }
 }

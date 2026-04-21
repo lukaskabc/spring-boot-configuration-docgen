@@ -69,18 +69,19 @@ and the value if required
 
 **Supported arguments are:**
 
-| Argument name           | description                                                                                                                |
-|-------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| `output_file`           | Specifies path to the output file<br>Default: `springboot-configuration`                                                   |
-| `configuration_package` | Allows to limit documentation only to a specific package                                                                   |
-| `format`                | Supported formats: `HTML` and `MD`, note that HTML is supported in many Markdown parsers<br>Default: `HTML`                |
-| `template`              | Path to the FreeMarker template used for generation                                                                        |
-| `order`                 | Alphabetical order for environmental variables in documentation (`ASC`, `DESC`, `NONE`)<br>Default: `ASC`                  |
-| `env_prefix`            | Global prefix for all generated environmental variables                                                                    |
-| `prepend_required`      | Prepends all "required" variables                                                                                          |
-| `deprecated_last`       | Moves "deprecated" variables to the end                                                                                    |
-| `do_not_merge`          | Disables documentation chaining, which is used for merging Javadoc comments from upper contexts (class attributes)         |
-| `no_html`               | When Markdown format is used, this processor generates some HTML tags (like `<br>`); using this argument will disable them |
+| Argument name              | description                                                                                                                                                                                                                           |
+|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `output_file`              | Specifies path to the output file<br>Default: `springboot-configuration`                                                                                                                                                              |
+| `configuration_package`    | Allows to limit documentation only to a specific package                                                                                                                                                                              |
+| `format`                   | Supported formats: `HTML` and `MD`, note that HTML is supported in many Markdown parsers<br>Default: `HTML`                                                                                                                           |
+| `template`                 | Path to the FreeMarker template used for generation                                                                                                                                                                                   |
+| `order`                    | Alphabetical order for environmental variables in documentation (`ASC`, `DESC`, `NONE`)<br>Default: `ASC`                                                                                                                             |
+| `env_prefix`               | Global prefix for all generated environmental variables                                                                                                                                                                               |
+| `prepend_required`         | Prepends all "required" variables                                                                                                                                                                                                     |
+| `deprecated_last`          | Moves "deprecated" variables to the end                                                                                                                                                                                               |
+| `do_not_merge`             | Disables documentation chaining, which is used for merging Javadoc comments from upper contexts (class attributes)                                                                                                                    |
+| `no_html`                  | When Markdown format is used, this processor generates some HTML tags (like `<br>`); using this argument will disable them                                                                                                            |
+| `split_options_on_capital` | Whether configuration options from properties files should be separated with underscore on capital letters. `multiWord1Option` will become `MULTI_WORD1_OPTION`. **May generate invalid variables, consider as experimental option!** |
 
 
 **Javadoc tags**  
@@ -108,7 +109,7 @@ For further reference, please use [FreeMarker documentation](https://freemarker.
 ## Bachelor thesis
 
 This project initially started as a bachelor's thesis at [Czech Technical University in Prague, Faculty of Electrical Engineering](https://fel.cvut.cz/en).  
-<!-- TODO: The Thesis is available in Czech on [DSpace](#). -->  
+The Thesis is available in Czech on [DSpace](https://dspace.cvut.cz/bitstreams/8ac33d4d-8ace-41a3-b3ac-83c240f947cf/download).  
 The goal was to create a tool that could be easily integrated into existing Java projects,
 and will generate documentation from Spring Boot configuration classes ([ConfigurationProperties](https://docs.spring.io/spring-boot/docs/3.2.1/reference/html/features.html#features.external-config.typesafe-configuration-properties.java-bean-binding)) using Javadoc comments.
 Configuration is in form of environmental variables.

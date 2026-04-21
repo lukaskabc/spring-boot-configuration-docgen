@@ -69,11 +69,18 @@ public class PropertiesClassScanner extends ElementScanner14<Void, PropertiesCla
      */
     private final EnvironmentUtils envUtils;
 
+    /**
+     * Whether configuration options from properties files should be separated with underscore
+     * on capital letters. {@code multiWord1Option} will become {@code MULTI_WORD1_OPTION}
+     */
+    private boolean splitOptionsOnCapital = false;
+
     private final String envPrefix;
 
-    public PropertiesClassScanner(EnvironmentUtils envUtils, boolean requirePropertyGetters, String envPrefix) {
+    public PropertiesClassScanner(EnvironmentUtils envUtils, boolean requirePropertyGetters, String envPrefix, boolean splitOptionsOnCapital) {
         this.envUtils = envUtils;
         this.envPrefix = envPrefix;
+        this.splitOptionsOnCapital = splitOptionsOnCapital;
 
         var annotatedConstructor = new AnnotatedConstructorPropertyDescriptor(envUtils);
         var singleConstructor = new SingleConstructorPropertyDescriptor(envUtils);
@@ -323,7 +330,7 @@ public class PropertiesClassScanner extends ElementScanner14<Void, PropertiesCla
      */
     public void visitVariableWithType(Element e, TypeMirror type, Params params) {
         // really primitive types like boolean, int, ...
-        var p = params.divingClone(e.getSimpleName().toString(), false /* primitives do not require validation of their structure */);
+        var p = params.divingClone(e.getSimpleName().toString(), false /* primitives do not require validation of their structure */, splitOptionsOnCapital);
         if (type.getKind().isPrimitive()) {
             addVariableAsDecorator(e, p);
             return;
@@ -360,7 +367,7 @@ public class PropertiesClassScanner extends ElementScanner14<Void, PropertiesCla
 
         params.additionalDoc.add(envUtils.docTrees().getDocCommentTree(e));
 
-        var paramsWithName = params.divingClone(e.getSimpleName().toString(), params.validationActive() && hasJakartaValidAnnotation(e));
+        var paramsWithName = params.divingClone(e.getSimpleName().toString(), params.validationActive() && hasJakartaValidAnnotation(e), splitOptionsOnCapital);
         switch (declElement.getKind()) {
             case CLASS, INTERFACE -> {
                 // Common type convertible by Spring conversion services
@@ -494,18 +501,19 @@ public class PropertiesClassScanner extends ElementScanner14<Void, PropertiesCla
          * @param name name to append
          * @return new prefix with name or override appended
          */
-        private String getNewPrefix(String name) {
-            if (nameOverride != null) {
-                return NameFormatter.combine(namePrefix, nameOverride);
+        private String getNewPrefix(String name, boolean splitOptionsOnCapital) {
+            String newSuffix = NameFormatter.firstNonEmpty(nameOverride, name);
+            if (splitOptionsOnCapital) {
+                newSuffix = NameFormatter.splitUnderscoreOnCapital(newSuffix);
             }
-            return NameFormatter.combine(namePrefix, name);
+            return NameFormatter.combine(namePrefix, newSuffix);
         }
 
         /**
          * @return new Params object with name (possibly overridden) appended to the prefix
          */
-        public Params divingClone(String name, boolean validationActive) {
-            var newPrefix = getNewPrefix(name);
+        public Params divingClone(String name, boolean validationActive, boolean splitOptionsOnCapital) {
+            var newPrefix = getNewPrefix(name, splitOptionsOnCapital);
             return new Params(this.propertyDescriptor, decorators, newPrefix, annotatedElement, null, additionalDoc, validationActive);
         }
     }
