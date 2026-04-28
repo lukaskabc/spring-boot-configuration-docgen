@@ -55,8 +55,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          server-id: 'central'
+          server-username: 'SONATYPE_USER_TOKEN_USERNAME'
+          server-password: 'SONATYPE_USER_TOKEN_PASSWORD'
           gpg-private-key: ${{ secrets.OPEN_PGP_PRIVATE_KEY }}
-          gpg-passphrase: PRIVATE_KEY_PASSPHRASE
+          gpg-passphrase: 'PRIVATE_KEY_PASSPHRASE'
 
       - name: Setup maven
         run: |
@@ -69,6 +72,8 @@ jobs:
       - name: Run Maven package phase
         run: ./mvnw -P release deploy -DskipTests
         env:
+          SONATYPE_USER_TOKEN_USERNAME: ${{ secrets.SONATYPE_USER_TOKEN_USERNAME }}
+          SONATYPE_USER_TOKEN_PASSWORD: ${{ secrets.SONATYPE_USER_TOKEN_PASSWORD }}
           PRIVATE_KEY_PASSPHRASE: ${{ secrets.PRIVATE_KEY_PASSPHRASE }}
 
       - name: Upload artifacts
