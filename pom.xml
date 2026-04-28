@@ -142,7 +142,7 @@
                             <publishingServerId>central</publishingServerId>
                             <excludeArtifacts>spring-boot-configuration-docgen-tests</excludeArtifacts>
                             <autoPublish>true</autoPublish>
-                            <waitUntil>published</waitUntil>
+                            <waitUntil>validated</waitUntil>
                         </configuration>
                         <executions>
                             <execution>
