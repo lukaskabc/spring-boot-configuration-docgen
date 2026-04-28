@@ -74,7 +74,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: artifacts
-          path: processor/target/spring-boot-configurationdocgen-processor-${{env.VERSION}}*
+          path: processor/target/spring-boot-configuration-docgen-processor-${{env.VERSION}}*
           if-no-files-found: error
 
   draft-release:
