@@ -29,8 +29,18 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Setup maven
+        run: |
+          chmod +x ./mvnw
+          ./mvnw clean
+
+      - name: Set version
+        run: ./mvnw versions:set -DnewVersion=${{ env.VERSION }}
+
       - name: Run Maven verify phase
         run: ./mvnw --batch-mode clean test
+
   package:
     name: Build and Sign Artifacts
     runs-on: ubuntu-slim
@@ -46,11 +56,16 @@ jobs:
           gpg-private-key: ${{ secrets.OPEN_PGP_PRIVATE_KEY }}
           gpg-passphrase: PRIVATE_KEY_PASSPHRASE
 
+      - name: Setup maven
+        run: |
+          chmod +x ./mvnw
+          ./mvnw clean
+
       - name: Set version
         run: ./mvnw versions:set -DnewVersion=${{ env.VERSION }}
 
       - name: Run Maven package phase
-        run: ./mvnw --batch-mode clean verify -DskipTests
+        run: ./mvnw --batch-mode verify -DskipTests
         env:
           PRIVATE_KEY_PASSPHRASE: ${{ secrets.PRIVATE_KEY_PASSPHRASE }}
 
