@@ -1,7 +1,8 @@
-name: Create Draft Release with Artifacts
+name: Publish Release with Artifacts
 # The action must be manually triggered and provided with the version number
-# It will create a new draft release with the provided version as a tag
-# The created artifacts will be attached to the release draft
+# It will run tests with maven, build and sign artifacts and deploy them to maven central.
+# A new GitHub release will be created and all the artifacts attached.
+
 on:
   workflow_dispatch:
     inputs:
