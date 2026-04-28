@@ -30,7 +30,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - name: Run Maven verify phase
-        run: mvn --batch-mode clean test
+        run: ./mvnw --batch-mode clean test
   package:
     name: Build and Sign Artifacts
     runs-on: ubuntu-slim
