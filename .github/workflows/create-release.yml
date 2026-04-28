@@ -77,8 +77,8 @@ jobs:
           path: processor/target/spring-boot-configuration-docgen-processor-${{env.VERSION}}*
           if-no-files-found: error
 
-  draft-release:
-    name: Create Draft Release and Attach Artifacts
+  create-release:
+    name: Create GitHub Release and Attach Artifacts
     runs-on: ubuntu-slim
     needs: [publish]
     steps:
