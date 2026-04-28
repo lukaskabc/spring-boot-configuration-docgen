@@ -1,0 +1,84 @@
+name: Create Draft Release with Artifacts
+# The action must be manually triggered and provided with the version number
+# It will create a new draft release with the provided version as a tag
+# The created artifacts will be attached to the release draft
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version (X.Y.Z format, e.g. 1.0.0)'
+        required: true
+        type: string
+
+# permissions required to write to the GitHub release
+permissions:
+  contents: write
+
+env:
+  VERSION: ${{ inputs.version }}
+  TAG: v${{ inputs.version }}
+
+jobs:
+  test:
+    name: Run all Tests
+    runs-on: ubuntu-slim
+    steps:
+      - uses: actions/checkout@v6
+      - name: Setup JDK 17
+        uses: actions/setup-java@v5
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Run Maven verify phase
+        run: mvn --batch-mode clean test
+  package:
+    name: Build and Sign Artifacts
+    runs-on: ubuntu-slim
+    environment: Maven central
+    needs: [test]
+    steps:
+      - uses: actions/checkout@v6
+      - name: Setup JDK 17
+        uses: actions/setup-java@v5
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          gpg-private-key: ${{ secrets.OPEN_PGP_PRIVATE_KEY }}
+          gpg-passphrase: PRIVATE_KEY_PASSPHRASE
+
+      - name: Set version
+        run: mvn versions:set -DnewVersion=${{ env.VERSION }}
+
+      - name: Run Maven package phase
+        run: mvn --batch-mode clean verify -DskipTests
+        env:
+          PRIVATE_KEY_PASSPHRASE: ${{ secrets.PRIVATE_KEY_PASSPHRASE }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: artifacts
+          path: processor/target/spring-boot-configurationdocgen-processor-${{env.VERSION}}*
+          if-no-files-found: error
+
+  draft-release:
+    name: Create Draft Release and Attach Artifacts
+    runs-on: ubuntu-slim
+    needs: [package]
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-artifacts
+          # Merges downloaded artifacts into the target path directly instead of creating subfolders per artifact name
+          merge-multiple: true
+
+      - name: Create Release Draft
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ env.TAG }}
+          name: ${{ env.TAG }}
+          draft: true
+          # attach all files from the directory
+          files: release-artifacts/*
+          fail_on_unmatched_files: true
