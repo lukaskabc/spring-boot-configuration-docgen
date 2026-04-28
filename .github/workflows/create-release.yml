@@ -69,7 +69,7 @@ jobs:
       - name: Set version
         run: ./mvnw versions:set -DnewVersion=${{ env.VERSION }}
 
-      - name: Run Maven package phase
+      - name: Run Maven deploy
         run: ./mvnw -P release deploy -DskipTests
         env:
           SONATYPE_USER_TOKEN_USERNAME: ${{ secrets.SONATYPE_USER_TOKEN_USERNAME }}
