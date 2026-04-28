@@ -47,10 +47,10 @@ jobs:
           gpg-passphrase: PRIVATE_KEY_PASSPHRASE
 
       - name: Set version
-        run: mvn versions:set -DnewVersion=${{ env.VERSION }}
+        run: ./mvnw versions:set -DnewVersion=${{ env.VERSION }}
 
       - name: Run Maven package phase
-        run: mvn --batch-mode clean verify -DskipTests
+        run: ./mvnw --batch-mode clean verify -DskipTests
         env:
           PRIVATE_KEY_PASSPHRASE: ${{ secrets.PRIVATE_KEY_PASSPHRASE }}
 
