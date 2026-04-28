@@ -17,6 +17,7 @@ permissions:
 env:
   VERSION: ${{ inputs.version }}
   TAG: v${{ inputs.version }}
+  MAVEN_ARGS: "--batch-mode --fail-at-end"
 
 jobs:
   test:
@@ -39,7 +40,7 @@ jobs:
         run: ./mvnw versions:set -DnewVersion=${{ env.VERSION }}
 
       - name: Run Maven verify phase
-        run: ./mvnw --batch-mode clean test
+        run: ./mvnw clean test
 
   package:
     name: Build and Sign Artifacts
@@ -65,7 +66,7 @@ jobs:
         run: ./mvnw versions:set -DnewVersion=${{ env.VERSION }}
 
       - name: Run Maven package phase
-        run: ./mvnw --batch-mode verify -DskipTests
+        run: ./mvnw verify -DskipTests
         env:
           PRIVATE_KEY_PASSPHRASE: ${{ secrets.PRIVATE_KEY_PASSPHRASE }}
 
