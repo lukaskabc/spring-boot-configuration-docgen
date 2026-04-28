@@ -42,8 +42,8 @@ jobs:
       - name: Run Maven verify phase
         run: ./mvnw clean test
 
-  package:
-    name: Build and Sign Artifacts
+  publish:
+    name: Build, Sign and publish artifacts
     runs-on: ubuntu-slim
     environment: Maven central
     needs: [test]
@@ -66,7 +66,7 @@ jobs:
         run: ./mvnw versions:set -DnewVersion=${{ env.VERSION }}
 
       - name: Run Maven package phase
-        run: ./mvnw verify -DskipTests
+        run: ./mvnw -P release deploy -DskipTests
         env:
           PRIVATE_KEY_PASSPHRASE: ${{ secrets.PRIVATE_KEY_PASSPHRASE }}
 
@@ -74,13 +74,13 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: artifacts
-          path: processor/target/spring-boot-configurationdocgen-processor-${{env.VERSION}}*
+          path: processor/target/spring-boot-configuration-docgen-processor-${{env.VERSION}}*
           if-no-files-found: error
 
   draft-release:
     name: Create Draft Release and Attach Artifacts
     runs-on: ubuntu-slim
-    needs: [package]
+    needs: [publish]
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
@@ -89,12 +89,12 @@ jobs:
           # Merges downloaded artifacts into the target path directly instead of creating subfolders per artifact name
           merge-multiple: true
 
-      - name: Create Release Draft
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ env.TAG }}
           name: ${{ env.TAG }}
-          draft: true
+          draft: false
           # attach all files from the directory
           files: release-artifacts/*
           fail_on_unmatched_files: true
