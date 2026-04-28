@@ -7,6 +7,7 @@
     <version>dev</version>
     <packaging>pom</packaging>
 
+    <name>Parent of Documentation generator for Spring Boot configuration</name>
     <description>Parent project for spring-boot-configuration-docgen-processor</description>
     <url>https://github.com/lukaskabc/spring-boot-configuration-docgen</url>
 
